@@ -32,7 +32,7 @@ public class PdfEntityParser {
 	public static List<AbstractPdfDocumentObject> GetArrayOfObject(
 			String value, Map<Integer, AbstractPdfDocumentObject> contentObjects) {
 		List<AbstractPdfDocumentObject> refContentObjects = new ArrayList<AbstractPdfDocumentObject>();
-		Matcher matcher = Pattern.compile(PdfConstants.Array.OBJECTS_PATTERN).matcher(value);
+		Matcher matcher = Pattern.compile(PdfConstants.Object.REF_PATTERN).matcher(value);
 		while (matcher.find()) {
 			if (matcher.groupCount() == 3) {
 				AbstractPdfDocumentObject contentObject = GetObjectByRef(matcher.group(PdfConstants.Object.GROUP_ID), 

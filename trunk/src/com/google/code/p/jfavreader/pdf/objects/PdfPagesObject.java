@@ -24,6 +24,6 @@ public class PdfPagesObject extends PdfDictionaryObject {
         }
 
 	public String toString() {
-		return String.format("%s|%s|%d|Kids:{3}", "Pages", Id, Position, Kids.size());
+		return String.format("%s|%s|%d|Kids:%d", "Pages", Id, Position, Kids.size());
 	}
 }
