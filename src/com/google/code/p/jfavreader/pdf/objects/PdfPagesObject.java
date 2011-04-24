@@ -6,8 +6,8 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
 import com.google.code.p.jfavreader.pdf.engine.PdfConstants;
 
 public class PdfPagesObject extends PdfDictionaryObject {
-	public PdfPagesObject(int id, long position, Map<String, Object> dictionary) {
-		super(id, position, dictionary);
+	public PdfPagesObject(int id, Map<String, Object> dictionary) {
+		super(id, dictionary);
 		Kids = new ArrayList<PdfDictionaryObject>();
 	}
 
@@ -24,6 +24,6 @@ public class PdfPagesObject extends PdfDictionaryObject {
         }
 
 	public String toString() {
-		return String.format("%s|%s|%d|Kids:%d", "Pages", Id, Position, Kids.size());
+		return String.format("%s|%d|Kids:%d", "Pages", Id, Kids.size());
 	}
 }

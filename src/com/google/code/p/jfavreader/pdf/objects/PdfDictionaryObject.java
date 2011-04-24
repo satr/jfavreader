@@ -5,8 +5,8 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
 import com.google.code.p.jfavreader.pdf.validation.PdfDictionaryValidator;
 
     public class PdfDictionaryObject extends AbstractPdfDocumentObject{
-        public PdfDictionaryObject(int id, long position, Map<String, Object> dictionary){ 
-        	super(id, position);
+        public PdfDictionaryObject(int id, Map<String, Object> dictionary){ 
+        	super(id);
             this.dictionary = dictionary;
         }
 
