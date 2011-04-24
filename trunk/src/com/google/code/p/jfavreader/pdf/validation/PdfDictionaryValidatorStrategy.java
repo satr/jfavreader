@@ -19,14 +19,15 @@ public class PdfDictionaryValidatorStrategy {
 		if (!(value instanceof String))
 			return new PdfDictionaryNullValidator();
 		String stringValue = ((String) value).trim();
-		if (Pattern.matches(stringValue, PdfConstants.Integer.PATTERN))
+		if (Pattern.matches(PdfConstants.Integer.PATTERN, stringValue))
 			return new PdfDictionaryIntegerValidator(dictionary, key,
 					stringValue);
-		if (Pattern.matches(stringValue, PdfConstants.Object.REF_PATTERN))
+		if (Pattern.matches(PdfConstants.Object.REF_PATTERN, stringValue))
 			return new PdfDictionaryObjectReferenceValidator(dictionary, key,
 					stringValue, contentObjects);
-		if (Pattern.matches(stringValue, PdfConstants.Array.PATTERN)) {
-			if (Pattern.matches(stringValue, PdfConstants.Array.OBJECTS_PATTERN))
+		if (Pattern.matches(PdfConstants.Array.PATTERN, stringValue)) {
+			final boolean matches = Pattern.matches(PdfConstants.Array.OBJECTS_PATTERN, stringValue);
+			if (matches)
 				return new PdfDictionaryArrayOfObjectsValidator(dictionary,
 						key, stringValue, contentObjects);
 		}

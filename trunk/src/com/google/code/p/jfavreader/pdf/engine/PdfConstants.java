@@ -52,7 +52,7 @@ public class PdfConstants {
 
 	public static class Array {
 		public static String PATTERN = "\\A\\[[^\\]]*\\]$";
-		public static String OBJECTS_PATTERN = "[ ]*(\\d+) (\\d+) (R)[ \r\n]*";
+		public static String OBJECTS_PATTERN = "[ ]*\\[([ ]*\\d+ \\d+ R[ \r\n]*)+\\][ \r\n]*";
 	}
 
 	public static class Object {

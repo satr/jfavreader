@@ -1,6 +1,5 @@
 package com.google.code.p.jfavreader.pdf.objects;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import com.google.code.p.jfavreader.pdf.engine.PdfException;
@@ -19,7 +18,8 @@ public class PdfPagesObject extends PdfDictionaryObject {
             if(!dictionary.containsKey(PdfConstants.Names.Kids))
                 throw new PdfException("Pages Object doesn't contain Kids collection");
             Kids = new ArrayList<PdfDictionaryObject>();
-            for (AbstractPdfDocumentObject pdfObject : (List<AbstractPdfDocumentObject>)dictionary.get(PdfConstants.Names.Kids))
+            final Object object = dictionary.get(PdfConstants.Names.Kids);
+			for (AbstractPdfDocumentObject pdfObject : (List<AbstractPdfDocumentObject>)object)
 				Kids.add((PdfDictionaryObject)pdfObject);
         }
 
