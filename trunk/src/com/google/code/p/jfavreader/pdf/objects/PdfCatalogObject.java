@@ -7,8 +7,8 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
 
 
     public class PdfCatalogObject extends PdfDictionaryObject {
-        public PdfCatalogObject(int id, long position, Map<String, Object> dictionary){ 
-            super(id, position, dictionary);
+        public PdfCatalogObject(int id, Map<String, Object> dictionary){ 
+            super(id, dictionary);
         }
 
         public PdfPagesObject Pages;
@@ -28,6 +28,6 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
 
         public String toString() {
             String pages = Pages == null ? "" : Pages.toString();
-            return String.format("%s|%s|%d|Pages:({3})", "Catalog", Id, Position, pages);
+            return String.format("%s|%d|Pages:(%s)", "Catalog", Id, pages.toString());
         }
     }

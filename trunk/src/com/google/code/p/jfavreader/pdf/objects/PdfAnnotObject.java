@@ -4,11 +4,11 @@ import java.util.Map;
 
 
     public class PdfAnnotObject extends PdfDictionaryObject{
-        public PdfAnnotObject(int id, long position, Map<String, Object> dictionary) { 
-        	super(id, position, dictionary);
+        public PdfAnnotObject(int id, Map<String, Object> dictionary) { 
+        	super(id, dictionary);
         }
         
         public String toString() {
-            return String.format("%s|%s|%d", "Annot", Id, Position);
+            return String.format("%s|%d", "Annot", Id);
         }
     }

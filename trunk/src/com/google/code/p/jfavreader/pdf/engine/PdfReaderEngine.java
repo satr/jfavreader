@@ -64,32 +64,30 @@ import com.google.code.p.jfavreader.pdf.objects.*;
                     ? reader.readLine() 
                     : _startOfObjectPattern.matcher(line).replaceAll("");
 
-            long position = ObjectPosition;
             Map<String, Object> dictionary = new HashMap<String, Object>();
             do{
-                position = reader.getFilePointer();
                 if (_xrefIntegerPattern.matcher(line).matches())
-                    return new PdfScalarObject(ObjectId, position, Long.parseLong(line));
+                    return new PdfScalarObject(ObjectId, Long.parseLong(line));
                 if (line.equals(PdfConstants.Markers.EndObj)){
                     if (ValidateType(PdfConstants.Names.Pages, dictionary))
-                        return new PdfPagesObject(ObjectId, position, dictionary);
+                        return new PdfPagesObject(ObjectId, dictionary);
                     if (ValidateType(PdfConstants.Names.Page, dictionary))
-                        return new PdfPageObject(ObjectId, position, dictionary);
+                        return new PdfPageObject(ObjectId, dictionary);
                     if (ValidateType(PdfConstants.Names.Catalog, dictionary))
-                        return new PdfCatalogObject(ObjectId, position, dictionary);
+                        return new PdfCatalogObject(ObjectId, dictionary);
                     if (ValidateType(PdfConstants.Names.Font, dictionary))
-                        return new PdfFontObject(ObjectId, position, dictionary);
+                        return new PdfFontObject(ObjectId, dictionary);
                     if (ValidateType(PdfConstants.Names.FontDescriptor, dictionary))
-                        return new PdfFontDescriptorObject(ObjectId, position, dictionary);
+                        return new PdfFontDescriptorObject(ObjectId, dictionary);
                     if (ValidateType(PdfConstants.Names.Annot, dictionary))
-                        return new PdfFontDescriptorObject(ObjectId, position, dictionary);
-                    return new PdfDictionaryObject(ObjectId, position, dictionary);
+                        return new PdfFontDescriptorObject(ObjectId, dictionary);
+                    return new PdfDictionaryObject(ObjectId, dictionary);
                     //                    throw new PdfException("Unexpected end of a PDF-Object");
                 }
                 if (line.startsWith(PdfConstants.Markers.StartDictionary))
                     line = ReadPdfDictionary(reader, line, dictionary);
                 if (line.endsWith(PdfConstants.Markers.Stream))
-                    return new PdfStreamObject(ObjectId, ObjectPosition, dictionary, position);
+                    return new PdfStreamObject(ObjectId, dictionary, reader.getFilePointer());
             } while ((line = reader.readLine()) != null);
             throw new PdfException("End of PDF-Object was not found");
         }

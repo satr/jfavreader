@@ -5,9 +5,9 @@ import java.util.Map;
 import com.google.code.p.jfavreader.pdf.engine.*;
 
 public class PdfStreamObject extends PdfDictionaryObject {
-	public PdfStreamObject(int id, long position,
+	public PdfStreamObject(int id,
 			Map<String, Object> dictionary, long streamPosition) {
-		super(id, position, dictionary);
+		super(id, dictionary);
 		StreamPosition = streamPosition;
 	}
 
@@ -26,16 +26,15 @@ public class PdfStreamObject extends PdfDictionaryObject {
 		if (value instanceof PdfScalarObject)
 			Length = (PdfScalarObject) value;
 		else if (value instanceof Integer)
-			Length = new PdfScalarObject(0, 0, (Integer) value);
+			Length = new PdfScalarObject(0, (Integer) value);
 		else if (value instanceof Long)
-			Length = new PdfScalarObject(0, 0, (Long) value);
+			Length = new PdfScalarObject(0, (Long) value);
 		else
 			throw new PdfException("Length entry type was not recognized");
 	}
 
 	public String toString() {
 		long length = Length == null ? 0 : Length.Value;
-		return String.format("%s|%s|%d|Length:%d", "Stream", Id, Position,
-				length);
+		return String.format("%s|%d|Length:%d|Stream position:%d", "Stream", Id, length, StreamPosition);
 	}
 }

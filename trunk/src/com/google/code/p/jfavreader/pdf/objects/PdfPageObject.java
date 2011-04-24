@@ -9,8 +9,8 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
 
 
     public class PdfPageObject extends PdfDictionaryObject{
-        public PdfPageObject(int id, long position, Map<String, Object> dictionary) { 
-        	super(id, position, dictionary);
+        public PdfPageObject(int id, Map<String, Object> dictionary) { 
+        	super(id, dictionary);
         }
 
         public List<PdfDictionaryObject> Content;
@@ -30,6 +30,6 @@ import com.google.code.p.jfavreader.pdf.engine.PdfException;
         }
 
         public String toString() {
-            return String.format("%s|%s|%d|Content:({3})", "Page", Id, Position, Content);
+            return String.format("%s|%d|Content:(%d)", "Page", Id, Content.size());
         }
     }
