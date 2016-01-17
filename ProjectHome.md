@@ -1,0 +1,1 @@
+JFavReader -The project has been ported from the NFavReader C# project.
